@@ -17,6 +17,7 @@ public class ShoutThread extends BP implements Runnable {
 
         while (true) {
             beltPack.send();
+            System.out.println("S"+belpackNumber);
         }
     }
 

@@ -1,4 +1,4 @@
-public class ListenThread extends BP implements Runnable {
+public class ListenThread extends Thread {
 
     private int belpackNumber;
     private String beltpackName;
@@ -10,14 +10,28 @@ public class ListenThread extends BP implements Runnable {
         belpackNumber = pack.getBeltpackNum();
 
         beltPack = pack;
+        beltpackName = "BP"+belpackNumber;
 
     }
 
     public void run(){
 
+        try {
+
+
         while (true) {
             beltPack.Listen();
+            System.out.println("L"+belpackNumber);
+        }}catch (Exception e){
+            System.out.println(beltpackName +" Threw an exception while listening");
         }
     }
+//
+//    public void start(){
+//
+//        Thread t = new Thread(this, beltpackName);
+//        t.start();
+//
+//    }
 
 }
