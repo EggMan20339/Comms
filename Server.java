@@ -1,3 +1,5 @@
+import com.sun.source.tree.LiteralTree;
+
 import javax.sound.sampled.*;
 
 
@@ -11,45 +13,15 @@ public class Server extends BP {
         BP BP3 = new BP(3);
         BP BP4 = new BP(4);
 
+        ListenThread BPLT1 = new ListenThread(BP1);
+        ListenThread BPLT2 = new ListenThread(BP2);
+        ListenThread BPLT3 = new ListenThread(BP3);
+        ListenThread BPLT4 = new ListenThread(BP4);
 
-
-        while (true){
-
-
-            BP1.send();
-            BP2.send();
-            BP3.send();
-            BP4.send();
-
-
-            BP1.Listen();
-            BP2.Listen();
-            BP3.Listen();
-            BP4.Listen();
-
-
-            if (!BP1.isWorking()){
-
-                System.out.print(BP1.getBeltpackNum() + ", ");
-
-            }
-           if (!BP2.isWorking()){
-
-                System.out.print(BP2.getBeltpackNum() + ", ");
-
-            }
-            if (!BP3.isWorking()){
-
-                System.out.print(BP3.getBeltpackNum() + ", ");
-
-            }
-            if (!BP4.isWorking()){
-
-                System.out.print(BP4.getBeltpackNum() + ", ");
-
-            }
-            System.out.println();
-        }
+        ShoutThread BPST1 = new ShoutThread(BP1);
+        ShoutThread BPST2 = new ShoutThread(BP2);
+        ShoutThread BPST3 = new ShoutThread(BP3);
+        ShoutThread BPST4 = new ShoutThread(BP4);
 
 
 

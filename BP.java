@@ -40,7 +40,7 @@ public class BP {
     private byte[] micIn = new byte[bufferSize];
     private byte[] speakerOut = new byte[bufferSize];
 
-    private int timeout = 2;
+    private int timeout = 100000;
 
 
     private boolean isWorking;
