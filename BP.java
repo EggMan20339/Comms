@@ -19,7 +19,7 @@ public class BP {
     private static boolean isSigned = true;
     private static boolean bigEndian = false;
     private static int bufferSize = 16;
-    private int timeout = 320000;
+    private int timeout = 32000;
 
     private static AudioFormat aFormat = new AudioFormat(aRate, sampleSize, channels, isSigned, bigEndian);
     private static AudioFormat.Encoding encode = AudioFormat.Encoding.PCM_SIGNED;

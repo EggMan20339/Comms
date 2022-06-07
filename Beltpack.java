@@ -7,7 +7,7 @@ public class Beltpack {
     static int BPN = 1;
     //4096
     static private int bufferSize = 16;
-    static private int timeout = 3000000;
+    static private int timeout = 3;
 
     static DataLine.Info outLineInfo;
     static TargetDataLine micLine;
