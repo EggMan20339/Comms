@@ -63,6 +63,9 @@ public class Beltpack {
 
             while (true){
 
+                micLine.read(sendData, 0, sendData.length);
+                DatagramPacket DGP = new DatagramPacket(sendData, sendData.length, serverAddress, outPort);
+                outSocket.send(DGP);
                 try{
 
 
@@ -73,9 +76,6 @@ public class Beltpack {
                 }catch (Exception e){
                     System.out.println("Not Connected");
                 }
-                micLine.read(sendData, 0, sendData.length);
-                DatagramPacket DGP = new DatagramPacket(sendData, sendData.length, serverAddress, outPort);
-                outSocket.send(DGP);
 
             }
 
