@@ -18,7 +18,8 @@ public class BP {
     private static int sampleSize = 16;
     private static boolean isSigned = true;
     private static boolean bigEndian = false;
-    private static int bufferSize = 4096;
+    private static int bufferSize = 16;
+    private int timeout = 16;
 
     private static AudioFormat aFormat = new AudioFormat(aRate, sampleSize, channels, isSigned, bigEndian);
     private static AudioFormat.Encoding encode = AudioFormat.Encoding.PCM_SIGNED;
@@ -40,7 +41,8 @@ public class BP {
     private byte[] micIn = new byte[bufferSize];
     private byte[] speakerOut = new byte[bufferSize];
 
-    private int timeout = 100000;
+
+    private boolean newData;
 
 
     private boolean isWorking;
@@ -98,6 +100,7 @@ public class BP {
             isWorking = true;
 
             inSocket.receive(recievePacket);
+            newData = true;
             AIS = new AudioInputStream(BAIS, aFormat, recievePacket.getLength());
 
         } catch (Exception e) {
@@ -112,6 +115,7 @@ public class BP {
             //outLine.read(micIn, 0, micIn.length);
             DGP = new DatagramPacket(micIn, micIn.length, serverAddress, outPort);
             outSocket.send(DGP);
+            newData = false;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,6 +133,10 @@ public class BP {
 
         return beltpackNum;
 
+    }
+
+    public boolean newData(){
+        return newData;
     }
 
 }

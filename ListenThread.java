@@ -5,25 +5,29 @@ public class ListenThread extends Thread {
 
     private BP beltPack;
 
-    ListenThread(BP pack){
+    ListenThread(BP pack) {
 
         belpackNumber = pack.getBeltpackNum();
 
         beltPack = pack;
-        beltpackName = "BP"+belpackNumber;
+        beltpackName = "BP" + belpackNumber;
+
+        System.out.println(beltPack.getBeltpackNum() + " constructed");
 
     }
 
-    public void run(){
+    public void run() {
+
 
         try {
 
 
-        while (true) {
-            beltPack.Listen();
-            System.out.println("L"+belpackNumber);
-        }}catch (Exception e){
-            System.out.println(beltpackName +" Threw an exception while listening");
+            while (true) {
+                beltPack.Listen();
+                System.out.println("L " + belpackNumber);
+            }
+        } catch (Exception e) {
+            System.out.println(beltpackName + " Threw an exception while listening");
         }
     }
 //

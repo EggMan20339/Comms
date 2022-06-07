@@ -5,7 +5,9 @@ import javax.sound.sampled.*;
 public class Beltpack {
 
     static int BPN = 1;
-    static private int bufferSize = 4096;
+    //4096
+    static private int bufferSize = 16;
+    static private int timeout = 3;
 
     static DataLine.Info outLineInfo;
     static TargetDataLine micLine;
@@ -30,7 +32,7 @@ public class Beltpack {
             InetAddress beltpackAddress = InetAddress.getByName(beltpackIP);
             MulticastSocket inSocket = new MulticastSocket(inPort);
             inSocket.joinGroup(serverAddress);
-            inSocket.setSoTimeout(bufferSize);
+            inSocket.setSoTimeout(timeout);
 
 
             byte[] revieveData = new byte[bufferSize];
@@ -62,9 +64,11 @@ public class Beltpack {
             while (true){
 
                 try{
+
+
                     inSocket.receive(recievePacket);
                     System.out.println("packet received");
-                    AudioInputStream AIS = new AudioInputStream(BAIS, aFormat, recievePacket.getLength());
+//                    AudioInputStream AIS = new AudioInputStream(BAIS, aFormat, recievePacket.getLength());
                     inLineSource.write(recievePacket.getData(), 0, recievePacket.getData().length);
                 }catch (Exception e){
                     System.out.println("Not Connected");
